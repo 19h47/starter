@@ -1,0 +1,72 @@
+/**
+ * COMPONENTS : PARAGRAPH
+ */
+
+.paragraph
+{
+	&--overlap
+	{
+		position: relative;
+		top: 50%;
+		left: 0;
+		right: 0;
+		margin-bottom: 0;
+		text-align: center;
+
+		@include at('xs')
+		{
+			margin:
+			{
+				bottom: 12rem;
+				top: 2.6rem;
+			}
+
+			font-size: 4.5rem;
+			line-height: (45/35);
+		}
+
+		@include from('sm')
+		{
+			position: absolute;
+		}
+
+		&--left
+		{	
+			@include from('sm')
+			{
+				right: -100%;
+			}
+		}
+
+		&--right
+		{
+			@include from('sm')
+			{
+				left: -100%
+			}
+		}
+	}
+
+	&--2-cols
+	{
+		padding-top: 1em;
+		padding-bottom: 1em;
+		columns: 2 24em;
+		column-gap: 4em;
+
+		& > *
+		{
+			break-inside: avoid;
+
+			&:first-child
+			{
+				margin-top: 0;
+			}
+
+			&:last-child
+			{
+				margin-bottom: 0;
+			}
+		}
+	}
+}

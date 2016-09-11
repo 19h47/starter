@@ -1,0 +1,21 @@
+/**
+ * COMPONENTS: IMAGES
+ */
+
+ %img // PLACEHOLDER –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+ {
+
+ }
+
+.img-fluid
+{
+	display: block;
+	height: auto;
+	width: 100%;
+
+	&--full
+	{
+		height: auto;
+		max-width: 100%;
+	}
+}

@@ -1,0 +1,17 @@
+/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+ * UTILITIES: RESPONSIVE
+ * –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+@each $bp in $slicer-breakpoint-names {
+    @include at($bp)
+    {
+        .visible-#{unquote($bp)}
+        {
+            @include responsive-visibility();
+        }
+        .hidden-#{unquote($bp)}
+        {
+            @include responsive-invisibility();
+        }
+    }
+}

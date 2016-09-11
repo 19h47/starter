@@ -1,0 +1,135 @@
+/**
+ * ICONS
+ */
+
+.icon
+{
+	&__logo
+	{
+		display: inline-block;
+		@include size(7.2rem, 7rem);
+		margin:
+		{
+			left: 4rem;
+		}
+		vertical-align: middle;
+		fill: currentColor;
+		
+		@at-root .home &,
+		.page &,
+		.single &
+		{
+			position: relative;
+			margin: 
+			{
+				left: 0;
+			}
+			transition: $ease-transition;
+    		z-index: 1;
+		}
+
+		@at-root .home &
+		{
+			@include size(12.1rem, 11.9rem);
+			
+    		@at-root .menu--is-open &
+    		{
+    			@include size(6rem);
+    		}
+
+			@include from('sm')
+			{
+				@include size(12.8rem, 12.6rem);
+				margin:
+				{
+					left: 3.3rem;
+				}
+			}
+		}
+
+		@at-root .page &,
+		.single &
+		{
+
+		}
+
+		@at-root .panel--is-open &
+		{
+
+			@include from('sm')
+			{
+
+				@include size(7.2rem, 7rem);
+				fill: map-get($colors, black);
+			}
+		}
+
+	}
+
+	&--hamburger
+	{
+		@include size(4.4rem, 3.3rem);
+		
+		&--close
+		{
+			opacity: 0;
+			transition: 0.3s ease;
+
+			@at-root .menu--is-open &
+			{
+				opacity: 1;
+			}
+		}
+
+		&--open
+		{
+			opacity: 1;
+			transition: 0.3s ease;
+
+			@at-root .menu--is-open &
+			{
+				opacity: 0;
+			}
+		}
+
+	}
+
+	&--social-single-event
+	{
+		max-width: 6rem;
+		max-height: 6rem;
+		fill: map-get( $colors, white );
+
+		@at-root .is-single &
+		{
+			fill: map-get( $colors, black );
+		}
+	}
+	
+	&--accessibility-archive-event
+	{
+		max-width: 3rem;
+		max-height: 3rem;
+		fill: map-get( $colors, black );
+	}
+
+	&--accessibility-single-event
+	{
+		max-width: 3rem;
+		max-height: 3rem;
+		fill: map-get( $colors, black );
+	}
+
+	&--menu
+	{
+		max-width: 6rem;
+		max-height: 6rem;
+		fill: map-get( $colors, black );
+	}
+
+	&--scroll-to
+	{
+		max-width: 2.4rem;
+		max-height: 1.3rem;
+	}
+}

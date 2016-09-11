@@ -1,0 +1,192 @@
+/**
+ * MIXINS
+ */
+
+// HEXADECIMAL TO RGBA
+@mixin background-opacity($color, $opacity: 0.3) {
+    background: $color; /* The Fallback */
+    background: rgba($color, $opacity);
+}
+
+@mixin optional-at-root($sel) {
+    @at-root #{if(not &, $sel, selector-append(&, $sel))} {
+        @content;
+    }
+}
+
+// SIZING SHORTCUTS
+@mixin size($width, $height: $width) 
+{
+  width: $width;
+  height: $height;
+}
+
+@mixin placeholder {
+    @include optional-at-root('::-webkit-input-placeholder') {
+        @content;
+    }
+    @include optional-at-root(':-moz-placeholder') {
+        @content;
+    }
+    @include optional-at-root('::-moz-placeholder') {
+        @content;
+    }
+    @include optional-at-root(':-ms-input-placeholder') {
+        @content;
+    }
+}
+
+// Set letter-spacing with unitless value from Photoshop.
+// @param $value
+@mixin letter-spacing($value)
+{
+    // if value is unitless, divided it by 1000 and set unit 
+    // as em to get Photoshop equivalent
+    letter-spacing: if(unitless($value), ($value/1000 * 1em), $value);
+}
+
+// Responsive utilities
+@mixin responsive-visibility()
+{
+    display: block !important;
+
+    @at-root #{selector-append('table', &)}
+    {
+        display: table !important;
+    }
+    @at-root #{selector-append('tr', &)}
+    {
+        display: table-row !important;
+    }
+    @at-root #{selector-append('th', &)}
+    {
+        display: table-cell !important;
+    }
+    @at-root #{selector-append('td', &)}
+    {
+        display: table-cell !important;
+    }
+}
+
+@mixin responsive-invisibility()
+{
+    display: none !important;
+}
+
+// This thing is very useful, it's a saving time. But I don't know where store it.
+// BREAKPOINT SLICER
+// Breakpoint:   0                 768px     992px       1200px         1400px     
+//               ├───────────────────┼─────────┼───────────┼──────────────┼──────>
+// Slice #:                1         ·    2         3            4            5
+// Slice #:                xs         ·   sm        md           lg           hd
+//               ·                   ·         ·           ·              ·    
+//               ·                   ·         ·  at(3)    ·              ·
+//               ·                   ·         · at('md')  ·              ·
+//               ·                   ·         ├───────────┤              ·
+//               ·                   ·         ·           ·              ·
+//               ·                   ·         · from(3)   ·              ·
+//               ·                   ·         · from('md')·              ·
+//               ·                   ·         ├─────────────────────────────────>
+//               ·                   ·                     ·              ·
+//               ·                   ·              to(3)  ·              ·
+//               ·                   ·            to('md') ·              ·
+//               ├─────────────────────────────────────────┤              ·
+//                                   ·                                    ·
+//                                   ·     between(2, 4)   ·              ·
+//                                   · between('sm', 'md') ·              ·
+//                                   ├─────────────────────┤              ·
+// Set a media query
+// @include at(3) {
+//   // Styles inside here will be applied when
+//   // browser window width is somewhere between 600px and 800px
+// }
+
+@mixin font-size($size) {
+  font-size: $size;
+  font-size: calculateRem($size);
+}
+
+@mixin call-nth($prop,$var,$index,$unity : px)
+{
+    #{$prop}: #{nth($var,$index)}$unity;
+}
+
+/**
+ * Change the default text color for placeholders.
+ * @color valid color
+ */
+@mixin reset-placeholder($color: #ccc, $polyfill: false)
+{
+    &::-webkit-input-placeholder
+    {
+        color: $color;
+    }
+
+    &::-moz-placeholder
+    {
+        color: $color;
+        opacity: 1;
+    }
+        
+    &:-moz-placeholder
+    {
+        color: $color;
+        opacity: 1;
+    }
+
+    &:-ms-input-placeholder
+    {
+        color: $color;
+    }
+        
+    &::placeholder
+    {
+        color: $color;
+    }
+        
+    @if $polyfill
+    {
+        .placeholder
+        {
+            color: $color;
+        }
+    }
+}
+
+/**
+ * Change the default color for selection.
+ * @color valid color
+ */
+@mixin reset-selection($color, $background-color)
+{
+    ::selection
+    {
+        background-color: $background-color;
+        color: $color;
+    }
+
+    ::-moz-selection
+    {
+        background-color: $background-color;
+        color: $color;
+    }
+}
+
+/* 
+  Photoshop does not apply line height to the first row, which CSS does. This creates all kinds of havock. 
+  To calculate the correct offset for the first line we need the font-size and the lineheight, i.e:
+  
+  @include line-height(22,30);
+  
+  in Photoshop points/px (but with no unit)
+  https://gist.github.com/bivald/9408059
+  
+*/
+@mixin line-height($fontsize, $lineheight ){
+
+    line-height: ($lineheight) + px;
+    line-height: ($lineheight/10) + rem;
+
+    margin-top: (($lineheight - $fontsize)/2 * -1) + px;
+    margin-top: ((($lineheight - $fontsize)/2 * -1) / 10 ) + rem
+}

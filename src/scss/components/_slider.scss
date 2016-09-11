@@ -1,0 +1,368 @@
+/**
+ * SLIDER
+ */
+
+.home
+{
+	&__slider
+	{
+		position: relative;
+
+		&.is-slide
+		{
+
+			.hide-previous,
+			.hide-next
+			{
+				visibility: visible;
+				animation: fadeOut 450ms cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+				z-index: 2;
+			}
+			
+			.show-previous,
+			.show-next
+			{
+				z-index: 1;
+			}
+		}
+
+		&__list // –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+		{
+			position: relative;
+			height: 65rem;
+  			overflow: hidden;
+		}
+
+		&__item // –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+		{
+		  	@include size(100%);
+	    	position: absolute;
+		    top: 0;
+			left: 0;
+			background:
+			{
+				color: map-get( $colors, black );
+				position: center;
+				size: cover;
+			}
+			visibility: hidden;
+
+			@include from('sm')
+			{
+			  	padding:
+			  	{
+			  		right: 8rem;
+			  		left: 8rem;
+			  	}
+			}
+
+			&__wrapper
+			{
+				position: relative;
+				width: 100%; 
+				height: 100%;
+				max-width: 1600px; 
+				margin: 0 auto; 
+			}
+
+			&__inner
+			{
+				// margin-left: 8rem;
+			    padding:
+			    {
+			    	top: 3.6rem;
+			    	right: 2rem;
+			    	bottom: 18rem;
+			    	left: 2rem;
+				}
+			    position: absolute;
+			    top: 0;
+			    right: 0;
+			    left: 0;
+
+			    &::before
+			    {
+		    	    position: absolute;
+				    bottom: 100%;
+				    left: -1px;
+				    width: 6rem;
+				    height: 5px;
+				    content: '';
+			    }
+
+			    @include from('sm')
+			    {
+			    	top: initial;
+			    	right: initial;
+			    	bottom: 0;
+					border:
+					{
+						left:
+						{
+							width: 1px; 
+							style: solid;
+						}
+					}
+			    }
+
+			    &__title
+			    {
+					color: map-get( $colors, white );
+					font:
+					{
+						size: 2.4rem;
+					}
+					text-transform: uppercase;
+					text-align: center;
+					
+					@include from('sm')
+					{
+						text-align: left;
+						font: 
+						{
+							size: 4.8rem;
+						} 
+					}
+					
+			    }
+			}
+
+			&.current
+			{
+  				position: relative;
+				visibility: visible;
+			}
+		}
+
+		&__button-wrapper // –––––––––––––––––––––––––––––––––––––––––––––––––––
+		{
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			z-index: 4;
+
+			&__inner{
+			 	max-width: 1600px; 
+			 	margin: 0 auto; 
+			 	width: 100%; 
+			 	height: 100%;  
+			 	position: relative;
+			 	padding:
+			 	{
+			 		right: 3.6rem;
+			    	bottom: 7rem;
+			    	left: 3.6rem;
+			    }
+
+			    @include from('sm')
+			    {
+			    	padding:
+			    	{
+			    		right: 9.7rem;
+			    		left: 9.8rem;
+			    	}
+			    }
+			}
+
+			&__item
+			{
+				display: inline-block;
+				height: 4.5rem;
+				padding:
+				{
+					right: (90/22) * 1em;
+					left: (90/22) * 1em;
+				}
+				color: map-get( $colors, white );
+				font:
+				{
+					family: $font-title-family;
+					size: 2.2rem;
+					weight: map-get( $font-weight, bold );
+				}
+				line-height: 4.5rem;
+				text:
+				{
+					align: center;
+					transform: uppercase;
+				}
+				white-space: nowrap;
+				
+
+				&.booking
+				{
+					width: 100%;
+					margin:
+					{
+						bottom: 1rem;
+					}
+					// background:
+					// {
+					// 	color: map-get( $colors, orange-moderate );
+					// }
+
+					@include from('sm')
+					{
+						width: initial;
+						margin:
+						{
+							right: 2rem;
+							bottom: 0;
+						}
+					}
+				}
+
+				&.live
+				{
+					width: 100%;
+					background:
+					{
+						color: map-get( $colors, red-strong );
+					}
+					@include from('sm')
+					{
+						width: initial;
+					}
+				}
+			}
+		}
+
+		&__nav
+		{
+			position: absolute;
+			right: 0;
+			left: 0;
+			bottom: 0;
+			margin:
+			{
+				right: 3.6rem;
+				bottom: 2rem;
+				left: 3.6rem;
+			}
+			color: map-get( $colors, white );
+			font:
+			{
+				size: 0;
+			}
+			z-index: 4;
+
+			@include from('sm')
+			{
+				margin:
+				{
+					right: 9.8rem;
+					left: 9.8rem;
+				}		
+			}
+
+			&__item
+			{
+				padding:
+				{
+					top: (2/11) * 1em;
+					right: (5/11) * 1em;
+					bottom: (2/11) * 1em;
+					left: (5/11) * 1em;
+				}
+				font:
+				{
+					size: 1.1rem;
+				}
+				border:
+				{
+					color: map-get( $colors, white );
+					style: solid;
+					width: 1px;
+				}
+
+				&.previous,
+				&.next
+				{
+					border-radius: 50%;
+					font-size: 2rem;
+					line-height: 2rem;
+					// text-transform: uppercase;
+					
+				}
+
+				&.previous
+				{
+					// display: inline-block;
+					// width: 50%;
+
+					// @include from('sm')
+					// {
+						width: initial;
+						float: left;
+					// }
+
+
+				}
+
+				&.next
+				{
+					// display: inline-block;
+					// width: 50%;
+
+					// @include from('sm')
+					// {
+						width: initial;
+						float: right;
+					// }
+
+
+				}
+			}
+		}
+
+		&__scroll-to
+		{
+			@include size( 4rem );
+			margin:
+			{
+				bottom: 2rem;
+			}
+			position: absolute;
+			right: calc( 50% - 4rem );
+			bottom: 0;
+			animation: bounce .6s ease infinite alternate;
+			border: 
+			{
+				radius: 50%;
+				style: solid;
+				width: 1px;
+			}
+			transform: translate(50%, 0);
+			z-index: 4;
+
+			// &__text,
+			&__icon
+			{
+				display: block;
+				text-align: center;	
+			}
+
+			// &__text
+			// {
+			// 	margin:
+			// 	{
+			// 		top: (7.5/14) * 1em;
+			// 	}
+			// 	color: map-get( $colors, orange-moderate );
+			// 	font:
+			// 	{
+			// 		size: 1.4rem;
+			// 		weight: map-get( $font-weight, light );
+			// 	}
+			// 	line-height: (27/14);
+			// 	text-transform: uppercase;
+				
+			// }
+			&__icon
+			{
+				line-height: 4rem;
+			}
+		}
+	}
+}

@@ -1,0 +1,162 @@
+/**
+ * FORMS
+ */
+
+// PLACEHOLDER INPUTS
+%inputs
+{
+    appearance: none;
+	display: block;
+	width: 100%;
+	margin: 0;
+	padding: ((11/strip-unit($base-font-size)) * 1em) ((20/strip-unit($base-font-size)) * 1em);
+	color: inherit;
+	background-color: transparent;
+	line-height: (23/strip-unit($base-font-size));
+	outline: 0;
+	transition: border-color 0.3s ease;
+}
+
+// PLACEHOLDER LABELS
+%labels
+{
+	display: block;
+	width: 100%;
+	margin-bottom: 2rem;
+	padding: 0;
+	background-color: transparent;
+	outline: 0;
+}
+
+// PLACEHOLDER TEXTAREAS
+%textareas
+{
+	@extend %inputs;
+	max-width: 100%;
+	min-height: 25rem;
+}
+
+// FIELD
+.field
+{
+	margin-bottom: 5rem;
+
+	&--contact
+	{
+		&--left
+		{
+			float: left;
+			width: calc(50% - 14px);
+		}
+
+		&--right
+		{
+			float: right;
+			width: calc(50% - 14px);
+
+		}
+	}
+}
+
+.input
+{
+	@extend %inputs;
+	border:
+	{
+		width: 1px;
+	}
+
+	&--contact
+	{
+		border-color: rgba(map-get($colors, black), 0.2);
+
+		&:focus
+		{
+			border-color: rgba(map-get($colors, black), 0.75);
+		}
+		&.error
+		{
+			// border-color: rgba(map-get($colors, orange-strong ), 0.2);
+
+			&:focus
+			{
+				// border-color: rgba(map-get($colors, orange-strong ), 0.75);
+			}
+		}
+
+		&.valid
+		{
+			// border-color: rgba(map-get($colors, green-strong ), 0.2);
+
+			&:focus
+			{
+				// border-color: rgba(map-get($colors, green-strong ), 0.75);
+			}
+		}
+	}
+}
+
+.label
+{
+	@extend %labels;
+
+	&--required
+	{
+		&::after
+		{
+			content: " *";
+		}
+	}
+}
+
+.textarea
+{
+	@extend %textareas;
+
+	&--contact
+	{
+		border-color: rgba(map-get($colors, black), 0.2);
+
+
+		&:focus
+		{
+			border-color: rgba(map-get($colors, black), 0.75);
+		}
+		&.error
+		{
+			// border-color: rgba(map-get($colors, orange-strong ), 0.2);
+
+			&:focus
+			{
+				// border-color: rgba(map-get($colors, orange-strong ), 0.75);
+			}
+		}
+
+		&.valid
+		{
+			// border-color: rgba(map-get($colors, green-strong ), 0.2);
+
+			&:focus
+			{
+				// border-color: rgba(map-get($colors, green-strong ), 0.75);
+			}
+		}
+	}
+}
+
+.message
+{
+	display: block;
+	margin-top: 1.5rem;
+	text-align: left;
+	
+	&.error
+	{
+		color: map-get($colors, orange-strong );
+	}
+
+	&.valid
+	{
+		color: map-get($colors, green-strong);
+	}
+}

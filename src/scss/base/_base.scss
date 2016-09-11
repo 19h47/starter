@@ -1,0 +1,50 @@
+/**
+ * BASE
+ */
+
+html,
+body
+{
+    height: 100%;
+}
+
+body
+{
+    background:
+    {
+        color: map-get( $colors, white );
+    }
+    color: map-get($colors, black);
+}
+
+a
+{
+	color: currentColor;
+	text-decoration: none;
+}
+
+i
+{
+    font-style: normal;
+}
+
+p
+{
+    margin: 1em 0;
+}
+
+ul, ol
+{
+    margin: 0;
+    padding: 0;
+}
+ul
+{
+    list-style: none;
+}
+
+hr
+{
+	margin: 0;
+	border: 0;
+}

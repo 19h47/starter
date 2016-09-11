@@ -1,0 +1,222 @@
+/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+ * RESPONSIVE: ARROW SYSTEM
+ * –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+$arrow-width-md: 25px;
+$arrow-width-sm: 25px;
+
+.arrow-xs-bottom,
+.arrow-xs-left,
+.arrow-xs-right,
+.arrow-xs-top,
+.arrow-sm-bottom,
+.arrow-sm-left,
+.arrow-sm-right,
+.arrow-sm-top,
+.arrow-md-bottom,
+.arrow-md-left,
+.arrow-md-right,
+.arrow-md-top,
+{
+	position: relative;
+
+	&::before
+	{
+		position: absolute;
+		@include size(0);
+		margin: auto;
+		border-style: solid;
+		content: '';
+		z-index: 1;
+	}
+}
+
+@include from('xs')
+{
+    .arrow
+    {
+        &-xs
+        {
+            &-bottom
+            {
+                &::before
+                {
+                    left: 0;
+                    right: 0;
+                    top: 100%;
+                    bottom: auto;
+                    border-color: currentColor transparent transparent transparent;
+                    border-width: $arrow-width-sm $arrow-width-sm 0 $arrow-width-sm;
+                }
+            }
+
+            &-left
+            {
+                &::before
+                {
+                    top: 0;
+                    left: auto;
+                    right: 100%;
+                    bottom: 0;
+                    border-color: transparent currentColor transparent transparent;
+                    border-right-color: inherit;
+                    border-width: $arrow-width-sm $arrow-width-sm $arrow-width-sm 0;
+                }
+            }
+
+            &-right
+            {
+                &::before
+                {
+                    top: 0;
+                    left: 100%;
+                    right: auto;
+                    bottom: 0;
+                    border-width: $arrow-width-sm 0 $arrow-width-sm $arrow-width-sm;
+                    border-color: transparent transparent transparent currentColor;
+                }
+            }
+
+            &-top
+            {
+                &::before
+                {
+                    top: auto;
+                    left: 0;
+                    right: 0;
+                    bottom: 100%;
+                    border-width: 0 $arrow-width-sm $arrow-width-sm $arrow-width-sm;
+                    border-color:  transparent transparent currentColor transparent ;
+                }
+            }
+        }
+    }
+}
+
+@include from('sm')
+{
+    .arrow
+    {
+        &-sm
+        {
+            &-bottom
+            {
+                &::before
+                {
+                    top: 100%;
+                    left: 0;
+                    right: 0;
+                    bottom: auto;
+                    border:
+                    {
+                        color: currentColor transparent transparent transparent;
+                        width: $arrow-width-md $arrow-width-md 0 $arrow-width-md;
+                    }
+                }
+            }
+
+            &-left
+            {
+                &::before
+                {
+                    top: 0;
+                    left: auto;
+                    right: 100%;
+                    bottom: 0;
+                    border-width: $arrow-width-md $arrow-width-md $arrow-width-md 0;
+                    border-color: transparent currentColor transparent transparent;
+                }
+            }
+
+            &-right
+            {
+                &::before
+                {
+                    top: 0;
+                    left: 100%;
+                    right: auto;
+                    bottom: 0;
+                    border-width: $arrow-width-md 0 $arrow-width-md $arrow-width-md;
+                    border-color:  transparent transparent transparent currentColor;
+                }
+            }
+
+            &-top
+            {
+                &::before
+                {
+                    top: auto;
+                    left: 0;
+                    right: 0;
+                    bottom: 100%;
+                    border-width: 0 $arrow-width-md $arrow-width-md $arrow-width-md;
+                    border-color:  transparent transparent currentColor transparent ;
+                }
+            }
+        }
+    }
+}
+
+@include from('md')
+{
+    .arrow
+    {
+        &-md
+        {
+            &-bottom
+            {
+                &::before
+                {
+                    top: 100%;
+                    left: 0;
+                    right: 0;
+                    bottom: auto;
+                    border:
+                    {
+                    	color: currentColor transparent transparent transparent;
+                    	width: $arrow-width-md $arrow-width-md 0 $arrow-width-md;
+                    }
+                }
+            }
+
+            &-left
+            {
+                &::before
+                {
+                    top: 0;
+                    left: auto;
+                    right: 100%;
+                    bottom: 0;
+                    border-width: $arrow-width-md $arrow-width-md $arrow-width-md 0;
+                    border-color: transparent currentColor transparent transparent;
+                }
+            }
+
+            &-right
+            {
+                &::before
+                {
+                    top: 0;
+                    left: 100%;
+                    right: auto;
+                    bottom: 0;
+                    border-width: $arrow-width-md 0 $arrow-width-md $arrow-width-md;
+                    border-color:  transparent transparent transparent currentColor;
+                }
+            }
+
+            &-top
+            {
+                &::before
+                {
+                    top: auto;
+                    left: 0;
+                    right: 0;
+                    bottom: 100%;
+                    border-width: 0 $arrow-width-md $arrow-width-md $arrow-width-md;
+                    border-color:  transparent transparent currentColor transparent ;
+                }
+            }
+        }
+    }
+}

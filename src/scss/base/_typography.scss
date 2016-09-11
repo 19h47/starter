@@ -1,0 +1,118 @@
+/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+ * TYPOGRAPHIE
+ * –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+html
+{
+    // Private var
+    $original-font-size: 62.5%;
+
+	font:
+    {
+		family: $font-body-family;
+		size: $original-font-size;
+	}
+
+	@include to('lg')
+	{
+	    font:
+        {
+	    	size: ($original-font-size * 3/4);
+	    }
+	}
+}
+
+body
+{
+    -webkit-font-smoothing: antialiased;
+    font:
+    {
+        size: (($base-font-size / 10px) * 1rem);
+        weight: map-get($font-weight, regular);
+    }
+    line-height: $base-line-height;
+    text-rendering: optimizeLegibility;
+}
+
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// font-size(rem without unit)
+// line-height(rem whithout unit)
+// font-weight (from .psd)
+// font-family (variable)
+// letter-spacing (from .psd)
+$titles: 
+(
+    h1: 
+    (
+        4.8,
+        5.8,
+        map-get( $font-weight, bold ),
+        $font-title-family,
+        0  
+    ),
+
+    h2: 
+    (
+        3.6,
+        4.6,
+        map-get( $font-weight, bold ),
+        $font-title-family,
+        0    
+    ),
+
+    h3: 
+    (
+        2.4,
+        3.5,
+        map-get( $font-weight, bold ),
+        $font-title-family,
+        0
+    ),
+
+    h4: 
+    (
+        2.2,
+        3.2,
+        map-get( $font-weight, bold ),
+        $font-title-family,
+        0
+    ),
+
+    h5: 
+    (
+        2,
+        3.5,
+        map-get( $font-weight, light ),
+        $font-title-family,
+        40
+    ),
+
+    h6:
+    (
+        1.8,
+        2,
+        map-get( $font-weight, bold),
+        $font-title-family,
+        0
+    )
+);
+
+@each $value, $map in $titles {
+    // Private var
+    $font-size: nth($map, 1);
+    $line-height: nth($map, 2);
+    $weight: nth($map, 3);
+    $family: nth($map, 4);
+    $letter-spacing: nth($map, 5);
+
+    #{$value}, .#{$value} {
+        font: 
+        {
+            family: $family;
+            size: $font-size * 1rem;
+            weight: $weight;
+        }
+        @include letter-spacing($letter-spacing);
+        line-height: ($line-height / $font-size); 
+    }
+}
